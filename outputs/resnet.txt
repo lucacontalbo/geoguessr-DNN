@@ -1,0 +1,193 @@
+2023-01-23 15:58:45.348702: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-23 15:58:45.630420: E tensorflow/stream_executor/cuda/cuda_blas.cc:2981] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2023-01-23 15:58:53.216301: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2023-01-23 15:58:53.217768: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2023-01-23 15:58:53.217857: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2023-01-23 15:59:09.459162: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:09.496950: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:09.497880: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:09.499137: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-01-23 15:59:09.499758: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:09.500515: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:09.501310: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:10.155780: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:10.156653: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:10.157231: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:980] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2023-01-23 15:59:10.157880: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9638 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:00:10.0, compute capability: 7.5
+2023-01-23 15:59:13.262596: I tensorflow/stream_executor/cuda/cuda_dnn.cc:384] Loaded cuDNN version 8200
+--------------------- TRAINING RESNET MODEL ---------------------
+Starting epoch 1
+335/335 [==============================] - 38s 97ms/step - loss: 1.3046 - categorical_crossentropy: 1.3046 - val_loss: 1.7658 - val_categorical_crossentropy: 1.7658
+Starting epoch 2
+335/335 [==============================] - 16s 48ms/step - loss: 1.0797 - categorical_crossentropy: 1.0797 - val_loss: 1.5208 - val_categorical_crossentropy: 1.5208
+Starting epoch 3
+335/335 [==============================] - 15s 45ms/step - loss: 1.0120 - categorical_crossentropy: 1.0120 - val_loss: 1.6134 - val_categorical_crossentropy: 1.6134
+Starting epoch 4
+335/335 [==============================] - 16s 48ms/step - loss: 0.8416 - categorical_crossentropy: 0.8416 - val_loss: 1.6496 - val_categorical_crossentropy: 1.6496
+Starting epoch 5
+335/335 [==============================] - 15s 44ms/step - loss: 0.7295 - categorical_crossentropy: 0.7295 - val_loss: 1.9758 - val_categorical_crossentropy: 1.9758
+              precision    recall  f1-score   support
+
+           0       0.39      0.48      0.43        50
+           1       0.14      0.08      0.10        50
+           2       0.53      0.20      0.29        50
+           3       0.41      0.74      0.52        50
+
+    accuracy                           0.38       200
+   macro avg       0.37      0.38      0.34       200
+weighted avg       0.37      0.38      0.34       200
+
+[[24  6  5 15]
+ [13  4  3 30]
+ [19 12 10  9]
+ [ 5  7  1 37]]
+--------------------- TRAINING CAR META ---------------------
+Starting epoch 1
+335/335 [==============================] - 18s 39ms/step - loss: 0.7788 - binary_crossentropy: 0.7788 - val_loss: 0.7491 - val_binary_crossentropy: 0.7491
+Starting epoch 2
+335/335 [==============================] - 12s 37ms/step - loss: 0.7196 - binary_crossentropy: 0.7196 - val_loss: 1.5030 - val_binary_crossentropy: 1.5030
+Starting epoch 3
+335/335 [==============================] - 12s 36ms/step - loss: 0.6706 - binary_crossentropy: 0.6706 - val_loss: 1.3198 - val_binary_crossentropy: 1.3198
+Starting epoch 4
+335/335 [==============================] - 12s 36ms/step - loss: 0.6292 - binary_crossentropy: 0.6292 - val_loss: 1.1112 - val_binary_crossentropy: 1.1112
+Starting epoch 5
+335/335 [==============================] - 12s 37ms/step - loss: 0.5936 - binary_crossentropy: 0.5936 - val_loss: 0.9414 - val_binary_crossentropy: 0.9414
+Starting epoch 6
+335/335 [==============================] - 12s 37ms/step - loss: 0.5626 - binary_crossentropy: 0.5626 - val_loss: 0.8081 - val_binary_crossentropy: 0.8081
+Starting epoch 7
+335/335 [==============================] - 12s 36ms/step - loss: 0.5354 - binary_crossentropy: 0.5354 - val_loss: 0.7090 - val_binary_crossentropy: 0.7090
+Starting epoch 8
+335/335 [==============================] - 12s 36ms/step - loss: 0.5113 - binary_crossentropy: 0.5113 - val_loss: 0.6384 - val_binary_crossentropy: 0.6384
+Starting epoch 9
+335/335 [==============================] - 12s 36ms/step - loss: 0.4898 - binary_crossentropy: 0.4898 - val_loss: 0.5914 - val_binary_crossentropy: 0.5914
+Starting epoch 10
+335/335 [==============================] - 12s 36ms/step - loss: 0.4704 - binary_crossentropy: 0.4704 - val_loss: 0.5619 - val_binary_crossentropy: 0.5619
+Starting epoch 11
+335/335 [==============================] - 12s 36ms/step - loss: 0.4528 - binary_crossentropy: 0.4528 - val_loss: 0.5450 - val_binary_crossentropy: 0.5450
+Starting epoch 12
+335/335 [==============================] - 12s 36ms/step - loss: 0.4367 - binary_crossentropy: 0.4367 - val_loss: 0.5372 - val_binary_crossentropy: 0.5372
+Starting epoch 13
+335/335 [==============================] - 12s 35ms/step - loss: 0.4220 - binary_crossentropy: 0.4220 - val_loss: 0.5359 - val_binary_crossentropy: 0.5359
+--------------------- TRAINING XGBOOST ---------------------
+Without car meta:
+Best parameters set found on train set:
+
+{'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 10}
+
+Grid scores on train set:
+
+0.388 (+/- 0.081 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 10}
+0.437 (+/- 0.118 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 100}
+0.455 (+/- 0.13 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 200}
+0.415 (+/- 0.103 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 10}
+0.432 (+/- 0.076 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 100}
+0.421 (+/- 0.085 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 200}
+0.419 (+/- 0.09 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 10}
+0.403 (+/- 0.122 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 100}
+0.401 (+/- 0.11 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 200}
+0.345 (+/- 0.127 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 10}
+0.43 (+/- 0.083 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 100}
+0.454 (+/- 0.091 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 200}
+0.423 (+/- 0.102 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 10}
+0.379 (+/- 0.128 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 100}
+0.424 (+/- 0.045 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 200}
+0.358 (+/- 0.122 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 10}
+0.41 (+/- 0.145 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 100}
+0.434 (+/- 0.073 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 200}
+0.379 (+/- 0.118 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 10}
+0.412 (+/- 0.105 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 100}
+0.427 (+/- 0.068 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 200}
+0.438 (+/- 0.072 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 10}
+0.436 (+/- 0.087 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 100}
+0.437 (+/- 0.062 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 200}
+0.471 (+/- 0.063 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 10}
+0.459 (+/- 0.078 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 100}
+0.433 (+/- 0.064 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 200}
+0.355 (+/- 0.08 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 10}
+0.429 (+/- 0.079 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 100}
+0.446 (+/- 0.083 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 200}
+0.401 (+/- 0.087 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 10}
+0.449 (+/- 0.047 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 100}
+0.42 (+/- 0.069 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 200}
+0.441 (+/- 0.102 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 10}
+0.409 (+/- 0.037 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 100}
+0.425 (+/- 0.053 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 200}
+
+
+              precision    recall  f1-score   support
+
+           0       0.50      0.50      0.50        10
+           1       0.00      0.00      0.00        10
+           2       0.14      0.10      0.12        10
+           3       0.50      0.80      0.62        10
+
+    accuracy                           0.35        40
+   macro avg       0.29      0.35      0.31        40
+weighted avg       0.29      0.35      0.31        40
+
+[[5 3 0 2]
+ [1 0 5 4]
+ [3 4 1 2]
+ [1 0 1 8]]
+With car meta:
+Best parameters set found on train set:
+
+{'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 200}
+
+Grid scores on train set:
+
+0.348 (+/- 0.161 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 10}
+0.374 (+/- 0.09 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 100}
+0.381 (+/- 0.106 ) for {'learning_rate': 0.2, 'max_depth': 3, 'n_estimators': 200}
+0.38 (+/- 0.119 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 10}
+0.396 (+/- 0.197 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 100}
+0.38 (+/- 0.148 ) for {'learning_rate': 0.2, 'max_depth': 4, 'n_estimators': 200}
+0.413 (+/- 0.142 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 10}
+0.397 (+/- 0.12 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 100}
+0.407 (+/- 0.132 ) for {'learning_rate': 0.2, 'max_depth': 5, 'n_estimators': 200}
+0.351 (+/- 0.135 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 10}
+0.405 (+/- 0.1 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 100}
+0.396 (+/- 0.114 ) for {'learning_rate': 0.4, 'max_depth': 3, 'n_estimators': 200}
+0.372 (+/- 0.128 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 10}
+0.373 (+/- 0.162 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 100}
+0.401 (+/- 0.13 ) for {'learning_rate': 0.4, 'max_depth': 4, 'n_estimators': 200}
+0.376 (+/- 0.167 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 10}
+0.425 (+/- 0.153 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 100}
+0.434 (+/- 0.154 ) for {'learning_rate': 0.4, 'max_depth': 5, 'n_estimators': 200}
+0.396 (+/- 0.145 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 10}
+0.407 (+/- 0.138 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 100}
+0.408 (+/- 0.138 ) for {'learning_rate': 0.6, 'max_depth': 3, 'n_estimators': 200}
+0.417 (+/- 0.139 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 10}
+0.423 (+/- 0.138 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 100}
+0.455 (+/- 0.143 ) for {'learning_rate': 0.6, 'max_depth': 4, 'n_estimators': 200}
+0.416 (+/- 0.127 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 10}
+0.42 (+/- 0.149 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 100}
+0.42 (+/- 0.149 ) for {'learning_rate': 0.6, 'max_depth': 5, 'n_estimators': 200}
+0.409 (+/- 0.138 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 10}
+0.39 (+/- 0.091 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 100}
+0.402 (+/- 0.094 ) for {'learning_rate': 0.8, 'max_depth': 3, 'n_estimators': 200}
+0.378 (+/- 0.113 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 10}
+0.393 (+/- 0.157 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 100}
+0.405 (+/- 0.154 ) for {'learning_rate': 0.8, 'max_depth': 4, 'n_estimators': 200}
+0.364 (+/- 0.146 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 10}
+0.409 (+/- 0.162 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 100}
+0.398 (+/- 0.155 ) for {'learning_rate': 0.8, 'max_depth': 5, 'n_estimators': 200}
+
+
+              precision    recall  f1-score   support
+
+           0       0.67      0.60      0.63        10
+           1       0.30      0.30      0.30        10
+           2       0.62      0.50      0.56        10
+           3       0.62      0.80      0.70        10
+
+    accuracy                           0.55        40
+   macro avg       0.55      0.55      0.55        40
+weighted avg       0.55      0.55      0.55        40
+
+[[6 3 0 1]
+ [1 3 3 3]
+ [2 2 5 1]
+ [0 2 0 8]]
