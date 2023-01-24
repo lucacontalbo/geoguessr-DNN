@@ -1,10 +1,5 @@
-import pickle
 import numpy as np
 import tensorflow as tf
-#import tensorflow_addons as tfa
-import sys
-import os
-from tqdm import tqdm
 from copy import deepcopy
 import xgboost as xgb
 from sklearn import metrics
@@ -13,25 +8,13 @@ from sklearn.model_selection import GridSearchCV
 from models.ResNetModel import ResNetModel
 from models.ResNetModelIN import ResNetModelIN
 from models.SimpleCNNModel import SimpleCNNModel
-from models.EfficientNetB7Model import EfficientNetB7Model
 from DatasetParser import DatasetParser
-from models.EfficientNet import *
 import itertools
 
 import random as python_random
 
-# The below is necessary for starting Numpy generated random numbers
-# in a well-defined initial state.
 np.random.seed(123)
-
-# The below is necessary for starting core Python generated random numbers
-# in a well-defined state.
 python_random.seed(123)
-
-# The below set_seed() will make random number generation
-# in the TensorFlow backend have a well-defined initial state.
-# For further details, see:
-# https://www.tensorflow.or
 tf.random.set_seed(1234)
 
 
@@ -47,7 +30,7 @@ class TrainingProcedure():
 			if not meta:
 				class_weights={0:1,1:1,2:1,3:1}
 				xtrain, xval, xtest = dataset_parser.get_state2img(preprocess_function,meta=False)
-				steps_per_epoch = 11750/fit_info['batch_size'] #len(xtrain)/fit_info['batch_size']
+				steps_per_epoch = 11750/fit_info['batch_size']
 			else:
 				class_weights={0:1,1:1,2:1,3:4}
 				xtrain, xval, xtest = dataset_parser.get_state2img(preprocess_function,meta=True)
@@ -59,38 +42,6 @@ class TrainingProcedure():
 				print("in")
 				lowest_val_err = history.history['val_loss'][0]
 				best_model = deepcopy(model)
-
-		y_true = []
-		y_pred = []
-		y_pred_real = []
-
-		if meta:
-			count = 0
-
-			for el in xtest:
-				if count == 0:
-					count=1
-				tmp = np.array(el[0])
-				prediction = best_model.predict(tmp,verbose=0)
-				y_pred_real.append(prediction[0])
-				y_pred.append(1 if prediction[0] > .3 else 0)
-				y_true.append(el[1][0])
-
-			print(y_pred_real)
-			print(y_pred)
-			print(y_true)
-		else:
-			for el in xtest:
-				tmp = np.array(el[0])
-				prediction = best_model.predict(tmp,verbose=0)
-				y_pred.append(np.argmax(prediction[0]))
-				y_true.append(np.argmax(el[1][0]))
-			print(y_pred)
-			print(y_true)
-
-
-		print(metrics.classification_report(y_true,y_pred))
-		print(metrics.confusion_matrix(y_true,y_pred))
 
 		return best_model
 
@@ -104,8 +55,6 @@ class TrainingProcedure():
 		for el in xval:
 			tmp = np.array(el[0])
 			prediction = best_model.predict(tmp,verbose=0)
-			print(prediction)
-			print(el[1])
 			index = np.argmax(prediction[0])
 			row.append(int(index))
 			row.append(float(prediction[0][index]))
@@ -119,27 +68,10 @@ class TrainingProcedure():
 		for el in xval_meta:
 			tmp = np.array(el[0])
 			prediction = car_meta_model.predict(tmp,verbose=0)
-			print(prediction)
 			new_dataset[count].append(prediction[0][0])
 			count+=1
 
 		return new_dataset, target
-	"""
-	def train_car_meta(self,model,preprocess_function):
-		lowest_val_err = float('inf')
-		best_model = None
-		for i in range(1):
-			print("Starting epoch {}".format(i+1))
-			_, _, _, dataset = dataset_parser.get_state2img(preprocess_function)
-			xtrain, xval, _ = dataset
-
-			history = model.fit(xtrain,validation_data=xval,**fit_info)
-
-			if history.history['val_loss'][0] < lowest_val_err:
-				lowest_val_err = history.history['val_loss'][0]
-				best_model = deepcopy(model)
-		return best_model
-	"""
 
 	def inspect(self,est):
 		print("Best parameters set found on train set:")
@@ -152,20 +84,6 @@ class TrainingProcedure():
 			print(round(est.cv_results_['mean_test_score'][i],3),"(+/-",round(est.cv_results_['std_test_score'][i],3),") for",est.cv_results_['params'][i])
 		print()
 		print()
-
-	def baseline_resnet(self,model,dataset_parser,preprocess_function):
-		model = start_train(self,model,dataset_parser,preprocess_function)
-		_, _, xtest, _ = dataset_parser.get_state2img(preprocess_function)
-		predictions, targets = [],[]
-		for el in xtest:
-			prediction = model.predict(np.array(el[0]),verbose=0)
-			index = int(np.argmax(prediction[0]))
-			target_index = int(np.argmax(el[1][0]))
-			predictions.append(index)
-			targets.append(target_index)
-		print(metrics.classification_report(targets,predictions))
-		print(metrics.confusion_matrix(targets,predictions))
-
 
 	def train_xgboost(self,best_model,car_meta_model,new_dataset,target,dataset_parser,preprocess_function):
 		_, _, xtest = dataset_parser.get_state2img(preprocess_function,meta=False)
@@ -201,29 +119,6 @@ class TrainingProcedure():
 				row.append(prediction[0][0])
 
 		xgb_dataset_test.append(row)
-
-		print(xgb_dataset_test)
-		print(xgb_target)
-		print(new_dataset)
-		print(target)
-
-		"""
-		classifier = xgb.XGBClassifier(objective=objective,num_class=num_class)
-		gs = GridSearchCV(classifier, hyperparams, scoring='f1_macro')
-		gs.fit(np.array(new_dataset)[:,:1],np.array(target))
-		print("Just one image:")
-
-		self.inspect(gs)
-
-		best_classifier = gs.best_estimator_
-		xgb_predictions = best_classifier.predict(np.array(xgb_dataset_test)[:,:-1])
-
-		print(metrics.classification_report(xgb_target,xgb_predictions))
-		print(metrics.confusion_matrix(xgb_target,xgb_predictions))
-		"""
-		print(np.array(new_dataset).shape)
-		print(np.array(target).shape)
-		print(np.array(xgb_dataset_test).shape)
 
 		classifier = xgb.XGBClassifier(objective=objective,num_class=num_class)
 		gs = GridSearchCV(classifier, hyperparams, scoring='f1_macro')
@@ -280,9 +175,13 @@ if MODEL == 'simplecnn':
 	car_meta_model = SimpleCNNModel(1,'sigmoid')
 	preprocess_function = lambda x: x/255
 elif MODEL == 'resnet':
-	model = ResNetModelIN(len(dataset_parser.states))
-	car_meta_model = ResNetModelIN(1,'sigmoid')
+	model = ResNetModel(len(dataset_parser.states))
+	car_meta_model = ResNetModel(1,'sigmoid')
 	preprocess_function = tf.keras.applications.resnet50.preprocess_input
+elif MODEL == 'resnetIN':
+        model = ResNetModelIN(len(dataset_parser.states))
+        car_meta_model = ResNetModelIN(1,'sigmoid')
+        preprocess_function = tf.keras.applications.resnet50.preprocess_input
 else:
 	model = EfficientNetB7Model(len(dataset_parser.states))
 	car_meta_model = EfficientNetB7Model(1,'sigmoid')
@@ -300,8 +199,6 @@ car_meta_model = tp.start_train(car_meta_model,dataset_parser,preprocess_functio
 
 print("Creating xgboost training data...")
 new_dataset,target = tp.predict_val(best_model,car_meta_model,dataset_parser,preprocess_function)
-
-#print(new_dataset)
 
 print("--------------------- TRAINING XGBOOST ---------------------")
 tp.train_xgboost(best_model,car_meta_model,new_dataset,target,dataset_parser,preprocess_function)
