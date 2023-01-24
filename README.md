@@ -17,7 +17,7 @@ Our hypothesis is that meta-data could improve the metrics, so we perform tests 
 The dataset is obtained by using `create_data.py`. For each sampled location, we get north, east, south, west, down frames.<br>
 The neural networks have been tested on 4 countries (Andorra, Canada, Denmark, Ghana), with 1000 location sampled per country (5000 images each).<br>
 To obtain imagery for different countries, change the `country_names` list inside `create_data.py` with the desired countries (you can get a list of the countries covered by Streetview [here](https://www.reddit.com/r/geoguessr/comments/ks6chr/full_list_of_all_countries_possible_in_battle/)).<br>
-The code may sometimes fail to obtain a valid Streetview location since it randomly samples a position in a given country and searches over a certain ratio.
+The code may sometimes fail to obtain a valid Streetview location since it randomly samples a position in a given country and searches over a certain radius.
 
 ## Neural Networks tested
 
