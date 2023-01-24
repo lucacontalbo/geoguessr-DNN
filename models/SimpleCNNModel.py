@@ -28,7 +28,7 @@ class SimpleCNNModel(tf.keras.Model):
         self.dense1 = tf.keras.layers.Dense(256,activation='relu')
         self.dense2 = tf.keras.layers.Dense(output_len, activation=final_activation)
 
-    def call(self, input):  # input is composed by 5 images
+    def call(self, input):
         conv1 = self.sequential(input)
         dense1_output = self.dense1(conv1)
         output = self.dense2(dense1_output)
