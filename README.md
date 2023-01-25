@@ -37,9 +37,9 @@ The results are provided in the following table. The models with the prefix *m* 
 
 | Model | Precision | Recall | F1 |
 | ----- | --------- | ------ | -- |
-CNN | 0.40 | 0.40 | 0.39 |
-mCNN | 0.50 | 0.53 | 0.51 |
-ResNet50 | 0.40 | 0.43 | 0.41 |
-mResNet50 | 0.55 | 0.55 | 0.56 |
-ResNet50 IN | 0.75 | 0.75 | 0.75 |
-mResNet50 IN | 0.73 | 0.72 | 0.73 |
+CNN | 0.50 | 0.52 | 0.50 |
+mCNN | 0.51 | 0.53 | 0.51 |
+ResNet50 | 0.50 | 0.50 | 0.50 |
+mResNet50 | 0.53 | 0.53 | 0.53 |
+ResNet50 IN | 0.71 | 0.71 | 0.71 |
+mResNet50 IN | 0.73 | 0.73 | 0.73 |
